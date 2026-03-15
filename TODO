@@ -1,4 +1,4 @@
 # TODO
 * Add operating instructions to README
-* Enable CORS on the server so the script can request data
-* When CORS is added, consider adding a "password" header so no other program may access the exposed API.
+* Add a "password" header so no other program or website may access the exposed API.
+* Add code to cut image with a 3x3 grid into different files to feed them into LLM.
