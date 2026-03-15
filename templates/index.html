@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flask + Google reCAPTCHA v2</title>
+
+  <!-- טעינת reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f6f8; }
+    .box { width: 380px; margin: 80px auto; background:#fff; padding: 20px;
+           border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+    .row { margin: 12px 0; }
+    input { width: 100%; padding: 10px; font-size: 16px; }
+    button { width: 100%; padding: 10px; font-size: 16px; cursor: pointer; }
+    .flash { padding: 10px; border-radius: 8px; margin-bottom: 12px; }
+    .flash.error { background: #ffe1e1; }
+    .flash.ok { background: #dff7df; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>טופס לדוגמה</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, msg in messages %}
+          <div class="flash {{ category }}">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" action="{{ url_for('submit') }}">
+      <div class="row">
+        <label>שם:</label>
+        <input name="name" placeholder="הכנס שם" />
+      </div>
+
+      <div class="row">
+        <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
+      </div>
+
+      <div class="row">
+        <button type="submit">שלח</button>
+      </div>
+    </form>
+
+    <p style="font-size: 13px; color:#666;">
+      הערה: התמונות יופיעו רק אם Google מחליטה שיש צורך באתגר.
+    </p>
+  </div>
+</body>
+</html>
