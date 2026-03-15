@@ -1,3 +1,4 @@
 # TODO
-* Make a GitHub repository so Gal can check in easily
-* Add requirements file
+* Add operating instructions to README
+* Enable CORS on the server so the script can request data
+* When CORS is added, consider adding a "password" header so no other program may access the exposed API.

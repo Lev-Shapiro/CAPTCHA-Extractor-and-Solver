@@ -74,12 +74,14 @@ def getScript(script_name: str):
         return scriptFile.read()
 
 
-@app.route("/submit_picture/<path:picURL>", methods=["GET"])
-def submit_picture(picURL: str):
+@app.route("/submit_picture", methods=["GET"])
+def submit_picture():
     """
-    Used to submit the picture exracted by the injected script.
+    Used to submit the picture extracted by the injected script.
     Returns the numbers (indices) of tiles to check.
     """
+
+    picURL = request.args.get("picURL", None)   # get the URL supplied by the GET request
     if not picURL:
         return "No picture URL provided!"
     
