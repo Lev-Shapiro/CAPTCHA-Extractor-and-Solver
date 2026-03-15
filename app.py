@@ -94,4 +94,5 @@ def submit_picture():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # TODO: the browser will complain that the certificate is invalid, better replace it with a real one
+    app.run(debug=True, ssl_context="adhoc") 

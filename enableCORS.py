@@ -9,6 +9,7 @@ def cors_enabled(func):
     def wrapper(*args, **kwargs):
         response = make_response(func(*args, **kwargs))
         response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Private-Network"] = "true"
         return response
     
     return wrapper
