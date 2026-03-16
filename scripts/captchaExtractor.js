@@ -30,16 +30,18 @@ and then gets the list of all the images in the iframe, and extracts the needed 
     // השגת ה-URL של תמונת האתגר הראשית (ה-Sprite) [cite: 264]
     const mainImageUrl = document.getElementsByTagName('img')[0].src;
     
-    console.log("Main Challenge Image Found. Checking for the challenge type...");
+    console.log("Detecting CAPTCHA type");
     console.log(`Instruction text detected: ${instructionText}`); // EDITED BY ME
     
     // 2. זיהוי האם מדובר באתגר עם תמונות מתחלפות (Fading) [cite: 268-274]
     const isSpecial3x3 = descriptionsContainer && descriptionsContainer.childNodes.length === 3;
-    if (isSpecial3x3) {
-        console.log("Detected: Special 3x3 with fading tiles.");
-    } else {
-        console.log("Detected: Static grid (No fading expected)."); 
-    }
+
+    console.log(`Detected: ${
+        isSpecial3x3 
+            ? "Special 3x3 with fading tiles." 
+            : "Static grid (No fading expected)."
+    }`);
+    
     console.log("Sending the URL to the server...");
     sendToServer(mainImageUrl, isSpecial3x3);
     
